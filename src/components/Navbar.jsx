@@ -45,14 +45,14 @@ export default function Navbar({ activeSection = 'hero' }) {
           {/* Brand Signature */}
           <a href="#hero" className="flex items-center gap-3 group">
             <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-[#0B100D] border border-[#6DFF9B]/30 group-hover:border-[#6DFF9B] transition-colors shadow-inner">
-              <span className="font-mono font-bold text-sm text-[#6DFF9B] tracking-wider">MT</span>
+              <span className="font-mono font-bold text-sm text-[#6DFF9B] tracking-wider">TP</span>
               <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#6DFF9B] animate-ping opacity-75" />
               <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#6DFF9B]" />
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-sm tracking-wider text-[#F4F7F4] uppercase font-display group-hover:text-[#6DFF9B] transition-colors">
-                  THASHREEF
+                <span className="font-bold text-sm sm:text-base tracking-wide text-[#F4F7F4] font-mono group-hover:text-[#6DFF9B] transition-colors">
+                  Thashreef_Protfolio
                 </span>
                 <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#6DFF9B]/10 text-[#6DFF9B] border border-[#6DFF9B]/20">
                   AI / ML

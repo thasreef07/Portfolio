@@ -19,11 +19,11 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#6DFF9B] animate-pulse" />
-              <span className="font-bold text-sm text-[#F4F7F4] tracking-wider font-display">
-                MUHAMMAD THASHREEF
+              <span className="font-bold text-sm text-[#F4F7F4] tracking-wider font-mono">
+                Thashreef_Protfolio
               </span>
-              <span className="text-[10px] text-[#00D9FF] px-1.5 py-0.5 rounded bg-[#00D9FF]/10 border border-[#00D9FF]/20">
-                AI / ML CANDIDATE
+              <span className="text-[10px] text-[#00D9FF] px-1.5 py-0.5 rounded bg-[#00D9FF]/10 border border-[#00D9FF]/20 font-mono">
+                AI / ML
               </span>
             </div>
             <p className="text-[#9AA8A2] text-[11px]">
