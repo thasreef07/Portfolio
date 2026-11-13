@@ -14,6 +14,14 @@ export default function Navbar({ activeSection = 'hero' }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [mobileMenuOpen]);
+
   const navItems = [
     { name: 'Core', href: '#hero' },
     { name: 'Projects', href: '#projects' },
@@ -28,8 +36,8 @@ export default function Navbar({ activeSection = 'hero' }) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#050706]/80 backdrop-blur-md border-b border-[#6DFF9B]/15 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
-          : 'bg-transparent py-5'
+          ? 'bg-[#050706]/95 backdrop-blur-md border-b border-[#6DFF9B]/20 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.7)]'
+          : 'bg-[#050706]/80 backdrop-blur-sm py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,12 +65,12 @@ export default function Navbar({ activeSection = 'hero' }) {
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-[#0B100D]/60 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#6DFF9B]/15 shadow-inner">
+          <nav className="hidden md:flex items-center gap-1 bg-[#0B100D]/85 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#6DFF9B]/20 shadow-inner">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="px-3.5 py-1.5 text-xs font-mono text-[#9AA8A2] hover:text-[#6DFF9B] hover:bg-[#6DFF9B]/5 rounded-full transition-all duration-200"
+                className="px-3.5 py-1.5 text-xs font-mono text-[#9AA8A2] hover:text-[#6DFF9B] hover:bg-[#6DFF9B]/10 rounded-full transition-all duration-200"
               >
                 {item.name}
               </a>
@@ -101,7 +109,7 @@ export default function Navbar({ activeSection = 'hero' }) {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-[#0B100D] border border-[#6DFF9B]/20 text-[#6DFF9B] hover:bg-[#6DFF9B]/10 transition-colors"
+            className="md:hidden p-2 rounded-lg bg-[#0B100D] border border-[#6DFF9B]/25 text-[#6DFF9B] hover:bg-[#6DFF9B]/10 transition-colors"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -109,53 +117,68 @@ export default function Navbar({ activeSection = 'hero' }) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with Full Dark Backdrop */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[60px] bg-[#050706]/95 backdrop-blur-xl border-b border-[#6DFF9B]/20 p-6 shadow-2xl transition-all">
-          <div className="flex flex-col gap-3">
-            <div className="text-[11px] font-mono text-[#9AA8A2] uppercase tracking-wider mb-1 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#6DFF9B]" />
-              Navigation Matrix
-            </div>
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2.5 text-sm font-mono text-[#F4F7F4] hover:text-[#6DFF9B] hover:bg-[#6DFF9B]/10 rounded-lg transition-colors border border-transparent hover:border-[#6DFF9B]/20"
-              >
-                {item.name}
-              </a>
-            ))}
-            <div className="pt-4 mt-2 border-t border-[#6DFF9B]/15 flex items-center justify-between">
-              <div className="flex items-center gap-2">
+        <>
+          {/* Backdrop */}
+          <div
+            onClick={() => setMobileMenuOpen(false)}
+            className="md:hidden fixed inset-0 top-[65px] bg-[#030604]/90 backdrop-blur-md z-40 transition-opacity"
+          />
+
+          {/* Drawer content */}
+          <div className="md:hidden fixed inset-x-0 top-[65px] bg-[#060B08] border-b border-[#6DFF9B]/30 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.95)] z-50 transition-all">
+            <div className="flex flex-col gap-2.5">
+              <div className="text-[11px] font-mono text-[#9AA8A2] uppercase tracking-wider mb-2 flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#6DFF9B] animate-pulse" />
+                  Navigation Matrix
+                </span>
+                <span className="text-[#6DFF9B] text-[10px]">7 ENDPOINTS</span>
+              </div>
+              
+              {navItems.map((item) => (
                 <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2.5 rounded-lg bg-[#0B100D] border border-[#6DFF9B]/20 text-[#6DFF9B]"
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-4 py-3 text-xs font-mono text-[#F4F7F4] bg-[#0A120D] hover:bg-[#121F17] hover:text-[#6DFF9B] rounded-xl transition-all border border-[#6DFF9B]/15 hover:border-[#6DFF9B]/40 flex items-center justify-between"
                 >
-                  <Github className="w-4 h-4" />
+                  <span className="font-semibold">{item.name}</span>
+                  <span className="text-[#6DFF9B] font-bold">→</span>
                 </a>
+              ))}
+
+              <div className="pt-4 mt-2 border-t border-[#6DFF9B]/20 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <a
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2.5 rounded-lg bg-[#0A120D] border border-[#6DFF9B]/25 text-[#6DFF9B]"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={personalInfo.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2.5 rounded-lg bg-[#0A120D] border border-[#6DFF9B]/25 text-[#00D9FF]"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                </div>
                 <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2.5 rounded-lg bg-[#0B100D] border border-[#6DFF9B]/20 text-[#00D9FF]"
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="px-4 py-2.5 text-xs font-mono text-[#050706] bg-[#6DFF9B] rounded-lg font-bold shadow-[0_0_15px_rgba(109,255,155,0.4)]"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  CONTACT // REACH OUT
                 </a>
               </div>
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-2 text-xs font-mono text-[#050706] bg-[#6DFF9B] rounded-lg font-semibold shadow-[0_0_15px_rgba(109,255,155,0.4)]"
-              >
-                CONTACT // REACH OUT
-              </a>
             </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );
